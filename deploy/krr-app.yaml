@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krr-app
+  labels:
+    app: krr-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krr-app
+  template:
+    metadata:
+      labels:
+        app: krr-app
+    spec:
+      containers:
+      - name: krr-app
+        image: krr-app-image
+        ports:
+        - containerPort: 8000
