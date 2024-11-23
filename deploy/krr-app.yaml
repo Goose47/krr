@@ -20,3 +20,17 @@ spec:
         ports:
         - containerPort: 8000
         imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: krr-app-service
+spec:
+  selector:
+    app: krr-app
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+    nodePort: 30000
