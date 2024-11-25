@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krr-krr
+  labels:
+    app: krr-krr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krr-krr
+  template:
+    metadata:
+      labels:
+        app: krr-krr
+    spec:
+      containers:
+        - name: krr
+          image: robustaai/krr:latest
+          args:
+            - "--prometheus-url=http://prometheus-kube-prometheus-prometheus.default.svc.cluster.local:9090"
