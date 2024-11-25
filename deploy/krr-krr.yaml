@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: krr
-          image: robustaai/krr:latest
+          image: us-central1-docker.pkg.dev/genuine-flight-317411/devel/krr:v1.8.3
           args:
             - "--prometheus-url=http://prometheus-kube-prometheus-prometheus.default.svc.cluster.local:9090"
