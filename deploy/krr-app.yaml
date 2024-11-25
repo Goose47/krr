@@ -20,6 +20,13 @@ spec:
         ports:
         - containerPort: 8000
         imagePullPolicy: Never
+        resources:
+          requests:
+            memory: "256Mi"   # Minimum memory requested
+            cpu: "500m"       # Minimum CPU requested (500m = 0.5 CPUs)
+          limits:
+            memory: "512Mi"   # Maximum memory allowed
+            cpu: "1"          # Maximum CPU allowed (1 CPU)
 ---
 apiVersion: v1
 kind: Service
