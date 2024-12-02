@@ -12,7 +12,7 @@ func main() {
 	http.HandleFunc("/sleep", sleep)
 	http.HandleFunc("/fib", sleep)
 
-	http.ListenAndServe(":9090", nil)
+	http.ListenAndServe(":8000", nil)
 }
 
 // ping responds with "pong" to every request
