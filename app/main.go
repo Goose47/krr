@@ -44,7 +44,8 @@ func sleep(w http.ResponseWriter, req *http.Request) {
 func fib(w http.ResponseWriter, req *http.Request) {
 	param := req.URL.Query().Get("n")
 	n, _ := strconv.Atoi(param)
-	fibonacciRecursive(n)
+
+	w.Write([]byte(fmt.Sprintf("fib(%d) = %d", n, fibonacciRecursive(n))))
 }
 
 func fibonacciRecursive(n int) int {
