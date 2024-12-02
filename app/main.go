@@ -10,7 +10,7 @@ import (
 func main() {
 	http.HandleFunc("/ping", ping)
 	http.HandleFunc("/sleep", sleep)
-	http.HandleFunc("/fib", sleep)
+	http.HandleFunc("/fib", fib)
 
 	http.ListenAndServe(":8000", nil)
 }
