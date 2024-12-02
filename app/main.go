@@ -10,8 +10,9 @@ import (
 func main() {
 	http.HandleFunc("/ping", ping)
 	http.HandleFunc("/sleep", sleep)
+	http.HandleFunc("/fib", sleep)
 
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":9090", nil)
 }
 
 // ping responds with "pong" to every request
@@ -36,4 +37,19 @@ func sleep(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Write([]byte(fmt.Sprintf("slept for %ds", seconds)))
+}
+
+// sleep sleeps for amount of seconds specified in sleep query param if present
+// and responds with amount of seconds slept
+func fib(w http.ResponseWriter, req *http.Request) {
+	param := req.URL.Query().Get("n")
+	n, _ := strconv.Atoi(param)
+	fibonacciRecursive(n)
+}
+
+func fibonacciRecursive(n int) int {
+	if n <= 1 {
+		return n
+	}
+	return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
 }
