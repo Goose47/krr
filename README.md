@@ -101,3 +101,30 @@ kubectl run -i --tty mypod --image=us-central1-docker.pkg.dev/genuine-flight-317
 ```bash
 python krr.py simple -f json --fileoutput krr-report.json
 ```
+
+
+
+
+
+
+
+## steps v2
+
+### 
+
+sum(irate(container_cpu_usage_seconds_total{pod="krr-app-85cddf485f-wpcdv"}[10m]))
+
+python krr.py simple --prometheus-url=http://prometheus-kube-prometheus-prometheus.default.svc.cluster.local:9090
+
+
+
+
+
+
+TODO: захардкоженный путь до конфига в докерфайле приложения
+TODO: захардкоженный порт в deployment файле приложения.
+TODO: сервисный аккаунт для пода приложения https://chatgpt.com/c/67514dae-d274-800b-92ec-af26e56d97f2 (права на запуск пода)
+
+TODO: сервисный аккаунт для пода крр https://chatgpt.com/c/67516411-9bdc-800b-afe5-82a063e217c2 (права на получение данных прома)
+krr-service-account.yaml не работает
+krr-rolebinding.yaml работает
