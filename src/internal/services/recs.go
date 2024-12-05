@@ -38,7 +38,7 @@ func (s *RecsService) Recommend(
 
 	res, err := s.recs.Recs(ctx)
 	if err != nil {
-		log.Info("failed to retrieve recommendations")
+		log.Error("failed to retrieve recommendations", slog.Any("error", err))
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
 
