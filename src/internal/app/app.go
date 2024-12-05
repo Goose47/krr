@@ -26,11 +26,12 @@ func New(
 	env string,
 	port int,
 ) *App {
-	testService := services.NewTestulatorService(log)
+	krrService := services.NewKRRService(log)
+	recsService := services.NewRecsService(log, krrService)
 
-	testCon := controllers.NewTestController(log, testService)
+	recsCon := controllers.NewRecsController(log, recsService)
 
-	router := server.NewRouter(log, env, testCon)
+	router := server.NewRouter(log, env, recsCon)
 	serverApp := serverapp.New(log, port, router)
 
 	return &App{

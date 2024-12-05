@@ -12,7 +12,7 @@ import (
 func NewRouter(
 	log *slog.Logger,
 	env string,
-	testCon *controllers.TestController,
+	testCon *controllers.RecsController,
 ) *gin.Engine {
 	var mode string
 	switch env {
@@ -29,9 +29,10 @@ func NewRouter(
 	r.RedirectTrailingSlash = true
 	r.RedirectFixedPath = true
 
+	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	r.GET("test", testCon.Testulate)
+	r.GET("recommend", testCon.Recommend)
 
 	return r
 }
