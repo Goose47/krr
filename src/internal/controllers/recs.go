@@ -3,6 +3,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log/slog"
 )
@@ -28,6 +29,12 @@ func NewRecsController(
 }
 
 func (con *RecsController) Recommend(c *gin.Context) {
-	res, _ := con.recommender.Recommend(context.TODO())
+	res, err := con.recommender.Recommend(context.TODO())
+
+	if err != nil {
+		c.JSON(500, fmt.Sprintf("failed to retrieve recommendations: %s. %v", err.Error(), err))
+		return
+	}
+
 	c.JSON(200, res)
 }
