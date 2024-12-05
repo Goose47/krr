@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krr-recs
+  labels:
+    app: krr-recs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krr-recs
+  template:
+    metadata:
+      labels:
+        app: krr-recs
+    spec:
+      containers:
+      - name: krr-recs
+        image: krr-recs-image
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: krr-recs-service
+  labels:
+    app: krr-recs
+spec:
+  selector:
+    app: krr-recs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
